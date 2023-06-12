@@ -7,7 +7,6 @@ if (@!$_SESSION['user']) {
 	header("Location:index2.php");
 }
 ?>
-
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -17,19 +16,13 @@ if (@!$_SESSION['user']) {
 <link rel="stylesheet" type="text/css" href="../../Assets/css/menu.css">
 </head>
 <body>
-<div class="container">
-<header class="header">
-<div class="row">
-
-</div>
-</header>
 <?php
 include("../../include/menu.php");
 ?>
 <div class="row">
 <div class="span12">
 <div class="caption">
-<h2>Administración de usuarios registrados</h2>
+<span><h2>Administración de usuarios registrados</h2></span>
 <div class="well well-small">
 <hr class="soft"/>
 <h4>Tabla de Usuarios</h4>
@@ -60,8 +53,8 @@ while ($arreglo = mysqli_fetch_array($query)) {
   echo "<td>$arreglo[2]</td>";
   echo "<td>$arreglo[3]</td>";
   echo "<td>$arreglo[4]</td>";
-  echo "<td><a href='actualizar.php?id=$arreglo[0]'><img src='images/actualizar.gif' class='img-rounded'></a></td>";
-  echo "<td><a href='admin.php?id=$arreglo[0]&idborrar=2'><img src='images/eliminar.png' class='img-rounded'/></a></td>";
+  echo "<td><a href='actualizar.php?id=$arreglo[0]'><img src='../../Assets/images/edit.png' class='img-rounded'></a></td>";
+  echo "<td><a href='admin.php?id=$arreglo[0]&idborrar=2'><img src='../../Assets/images/delete.png' class='img-rounded'/></a></td>";
   echo "</tr>";
 }
 echo "</tbody>";

@@ -5,24 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú lateral responsive - MagtimusPro</title>
-
     <link rel="stylesheet" href="../Assets/css/menu.css">
-
-    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
 </head>
 <body id="body">
-    
     <header>
         <div class="icon__menu">
             <i class="fas fa-bars" id="btn_open"></i>
-
-
-            <ul class="nav pull-right">
+    <ul class="nav pull-right">
   <li>Bienvenido <strong><?php echo $_SESSION['user'];?></strong></li>
   <li><a href="desconectar.php">Cerrar Sesión</a></li>
 </ul>
-
-
         </div>
     </header>
 
@@ -81,5 +73,6 @@
 
     </div>
     <script type="text/javascript" src="../Assets/js/menu.js"></script>
+    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
 </body>
 </html>
