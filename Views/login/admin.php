@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 session_start();
-if (@!$_SESSION['user']) {
+if (!isset($_SESSION['user'])) {
 	header("Location:index.php");
 } elseif ($_SESSION['rol'] == 2) {
 	header("Location:index2.php");
@@ -24,6 +24,7 @@ include("../../include/menu.php");
 <div class="caption">
 <span><h2>Administración de usuarios registrados</h2></span>
 <div class="well well-small">
+<a href="agregar_usuario.php" class="btn btn-primary">Agregar Usuario</a>
 <hr class="soft"/>
 <h4>Tabla de Usuarios</h4>
 <div class="row-fluid">
@@ -60,7 +61,7 @@ while ($arreglo = mysqli_fetch_array($query)) {
 echo "</tbody>";
 echo "</table>";
 extract($_GET);
-if (@$idborrar == 2) {
+if (isset($idborrar) && $idborrar == 2) {
   $sqlborrar = "DELETE FROM login WHERE id=$id";
   $resborrar = mysqli_query($mysqli, $sqlborrar);
   echo '<script>alert("REGISTRO ELIMINADO")</script> ';
