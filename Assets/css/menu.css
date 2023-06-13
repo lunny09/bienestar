@@ -12,6 +12,7 @@ body {
     margin-left: 80px;
     margin-top: 80px;
     transition: margin-left 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    font-family: 'Open Sans', sans-serif;
 }
 
 a {
@@ -181,4 +182,37 @@ a.selected {
         width: 80px;
         left: -80px;
     }
+}
+
+/* Estilos adicionales para hacer la tabla responsive */
+@media (max-width: 767px) {
+  .table-container {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+  }
+
+  th,
+  td {
+    padding: 0.5rem;
+    font-size: 12px; /* Ajusta el tamaño de fuente para dispositivos más pequeños */
+  }
+}
+
+/* Estilos para centrar la tabla y los títulos */
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.caption {
+  text-align: center;
+  margin-bottom: 1rem;
 }

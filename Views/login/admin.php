@@ -19,6 +19,7 @@ if (!isset($_SESSION['user'])) {
     <?php
     include("../../include/menu.php");
     ?>
+    <div class="table-container">
     <div class="row">
         <div class="span12">
             <div class="caption">
@@ -74,7 +75,7 @@ if (!isset($_SESSION['user'])) {
             </div>
         </div>
     </div>
-
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

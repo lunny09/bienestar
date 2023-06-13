@@ -62,7 +62,7 @@
             </a>
         </div>
     </div>
-    <script type="text/javascript" src="../Assets/js/menu.js"></script>
+    <script type="text/javascript" src="../../Assets/js/menu.js"></script>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
 </body>
 </html>
