@@ -94,12 +94,8 @@ if (!isset($_SESSION['user'])) {
                             <input type="text" name="cedula" id="cedula" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="usuario">Usuario:</label>
-                            <input type="text" name="user" id="usuario" class="form-control" required>
-                        </div>
-                        <div class="form-group">
                             <label for="password">Contraseña:</label>
-                            <input type="password" name="password" id="password" class="form-control" required>
+                            <input type="password" name="password_hash" id="password_hash" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="correo">Correo:</label>
@@ -118,6 +114,14 @@ if (!isset($_SESSION['user'])) {
                             <select name="sexo" id="sexo" class="form-control" required>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="rol">rol:</label>
+                            <select name="rol" id="rol" class="form-control" required>
+                                <option value="Paciente">Paciente</option>
+                                <option value="Psicologo">Psicologo</option>
+                                <option value="Administrador">Administrador</option>
                             </select>
                         </div>
                         <div class="form-group">
