@@ -36,11 +36,12 @@ if (!isset($_SESSION['user'])) {
                         echo "<table class='table'>";
                         echo "<thead>";
                         echo "<tr>";
-                        echo "<th scope='col'>Id</th>";
-                        echo "<th scope='col'>Usuario</th>";
-                        echo "<th scope='col'>Password</th>";
+                        echo "<th scope='col'>Cedula</th>";
                         echo "<th scope='col'>Correo</th>";
-                        echo "<th scope='col'>Password del administrador</th>";
+                        echo "<th scope='col'>Nombres y apellidos</th>";
+                        echo "<th scope='col'>Telefono</th>";
+                        echo "<th scope='col'>Sexo</th>";
+                        echo "<th scope='col'>Carrera</th>";
                         echo "<th scope='col'>Editar</th>";
                         echo "<th scope='col'>Borrar</th>";
                         echo "</tr>";
@@ -48,17 +49,19 @@ if (!isset($_SESSION['user'])) {
                         echo "<tbody>";
                         ?>
                         <?php
-                        while ($arreglo = mysqli_fetch_array($query)) {
-                            echo "<tr>";
-                            echo "<th scope='row'>$arreglo[0]</th>";
-                            echo "<td>$arreglo[1]</td>";
-                            echo "<td>$arreglo[2]</td>";
-                            echo "<td>$arreglo[3]</td>";
-                            echo "<td>$arreglo[4]</td>";
-                            echo "<td><a href='actualizar.php?id=$arreglo[0]'><img src='../../Assets/images/edit.png' class='img-rounded'></a></td>";
-                            echo "<td><a href='admin.php?id=$arreglo[0]&idborrar=2'><img src='../../Assets/images/delete.png' class='img-rounded'/></a></td>";
-                            echo "</tr>";
-                        }
+                       while ($arreglo = mysqli_fetch_array($query)) {
+                        echo "<tr>";
+                        echo "<th scope='row'>$arreglo[6]</th>"; // Cedula
+                        echo "<td>$arreglo[3]</td>"; // Correo
+                        echo "<td>$arreglo[7]</td>"; // Nombres y apellidos
+                        echo "<td>$arreglo[8]</td>"; // Telefono
+                        echo "<td>$arreglo[9]</td>"; // Sexo
+                        echo "<td>$arreglo[10]</td>"; // Carrera
+                        echo "<td><a href='actualizar.php?id=$arreglo[0]'><img src='../../Assets/images/edit.png' class='img-rounded'></a></td>";
+                        echo "<td><a href='admin.php?id=$arreglo[0]&idborrar=2'><img src='../../Assets/images/delete.png' class='img-rounded'/></a></td>";
+                        echo "</tr>";
+                    }
+                    
                         echo "</tbody>";
                         echo "</table>";
                         extract($_GET);
@@ -86,6 +89,10 @@ if (!isset($_SESSION['user'])) {
                 </div>
                 <div class="modal-body">
                     <form action="guardar_usuario.php" method="POST">
+                    <div class="form-group">
+                            <label for="cedula">Cedula:</label>
+                            <input type="text" name="cedula" id="cedula" class="form-control" required>
+                        </div>
                         <div class="form-group">
                             <label for="usuario">Usuario:</label>
                             <input type="text" name="user" id="usuario" class="form-control" required>
@@ -97,6 +104,32 @@ if (!isset($_SESSION['user'])) {
                         <div class="form-group">
                             <label for="correo">Correo:</label>
                             <input type="email" name="email" id="correo" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombres">Nombres y apellidos:</label>
+                            <input type="text" name="nombres" id="nombres" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono:</label>
+                            <input type="text" name="telefono" id="telefono" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sexo">Sexo:</label>
+                            <select name="sexo" id="sexo" class="form-control" required>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="carrera">Carrera:</label>
+                            <select name="carrera" id="carrera" class="form-control" required>
+                            <option value="Desarrollo de software">Desarrollo de software</option>
+                            <option value="Diseño de modas">Diseño de modas</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Gastronomia">Gastronomia</option>
+                            <option value="Turismo">Turismo</option>
+                            <option value="Bonberos">Bonberos</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </form>

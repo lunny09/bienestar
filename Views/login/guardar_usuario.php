@@ -9,12 +9,15 @@ require("connect_db.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Obtener los datos del formulario
+    $cedula = $_POST['cedula'];
     $user = $_POST['user'];
-    $password = $_POST['password'];
     $email = $_POST['email'];
-
+    $nombres = $_POST['nombres'];
+    $telefono = $_POST['telefono'];
+    $sexo = $_POST['sexo'];
+    $carrera = $_POST['carrera'];
     // Insertar el nuevo usuario en la base de datos
-    $sql = "INSERT INTO login (user, password, email) VALUES ('$user', '$password', '$email')";
+    $sql = "INSERT INTO login (cedula, user, email, nombres, telefono, sexo, carrera) VALUES ('$cedula', '$user', '$email', '$nombres', '$telefono', '$sexo', '$carrera')";
     if (mysqli_query($mysqli, $sql)) {
         echo '<script>alert("Usuario agregado correctamente")</script>';
         echo "<script>location.href='admin.php'</script>";
