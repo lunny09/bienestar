@@ -3,7 +3,7 @@
 session_start();
 if (!isset($_SESSION['user'])) {
     header("Location:index.php");
-} elseif ($_SESSION['rol'] == 2) {
+} elseif ($_SESSION['rol_id'] == 2) {
     header("Location:index2.php");
 }
 ?>
@@ -42,6 +42,7 @@ if (!isset($_SESSION['user'])) {
                         echo "<th scope='col'>Telefono</th>";
                         echo "<th scope='col'>Sexo</th>";
                         echo "<th scope='col'>Carrera</th>";
+                        echo "<th scope='col'>Rol</th>";
                         echo "<th scope='col'>Editar</th>";
                         echo "<th scope='col'>Borrar</th>";
                         echo "</tr>";
@@ -57,6 +58,7 @@ if (!isset($_SESSION['user'])) {
                         echo "<td>$arreglo[8]</td>"; // Telefono
                         echo "<td>$arreglo[9]</td>"; // Sexo
                         echo "<td>$arreglo[10]</td>"; // Carrera
+                        echo "<td>$arreglo[5]</td>"; // rol
                         echo "<td><a href='actualizar.php?id=$arreglo[0]'><img src='../../Assets/images/edit.png' class='img-rounded'></a></td>";
                         echo "<td><a href='admin.php?id=$arreglo[0]&idborrar=2'><img src='../../Assets/images/delete.png' class='img-rounded'/></a></td>";
                         echo "</tr>";
@@ -117,11 +119,11 @@ if (!isset($_SESSION['user'])) {
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="rol">rol:</label>
-                            <select name="rol" id="rol" class="form-control" required>
-                                <option value="Paciente">Paciente</option>
-                                <option value="Psicologo">Psicologo</option>
-                                <option value="Administrador">Administrador</option>
+                            <label for="rol_id">rol_id:</label>
+                            <select name="rol_id" id="rol_id" class="form-control" required>
+                                <option value="2">Paciente</option>
+                                <option value="3">Psicologo</option>
+                                <option value="1">Administrador</option>
                             </select>
                         </div>
                         <div class="form-group">

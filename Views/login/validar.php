@@ -18,7 +18,7 @@ session_start();
 		if($pass==$f2['pasadmin']){
 			$_SESSION['id']=$f2['id'];
 			$_SESSION['user']=$f2['user'];
-			$_SESSION['rol']=$f2['rol'];
+			$_SESSION['rol_id']=$f2['rol_id'];
 
 			echo '<script>alert("BIENVENIDO ADMINISTRADOR")</script> ';
 			echo "<script>location.href='admin.php'</script>";
@@ -29,10 +29,10 @@ session_start();
 
 	$sql=mysqli_query($mysqli,"SELECT * FROM login WHERE email='$username'");
 	if($f=mysqli_fetch_assoc($sql)){
-		if($pass==$f['password']){
+		if($pass==$f['password_hash']){
 			$_SESSION['id']=$f['id'];
 			$_SESSION['user']=$f['user'];
-			$_SESSION['rol']=$f['rol'];
+			$_SESSION['rol_id']=$f['rol_id'];
 
 			header("Location: index2.php");
 		}else{

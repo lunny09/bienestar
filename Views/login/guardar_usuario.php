@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 if (!isset($_SESSION['user'])) {
     header("Location: index.php");
@@ -15,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombres = $_POST['nombres'];
     $telefono = $_POST['telefono'];
     $sexo = $_POST['sexo'];
-    $rol = $_POST['rol'];
+    $rol_id = $_POST['rol_id'];
     $carrera = $_POST['carrera'];
     // Insertar el nuevo usuario en la base de datos
-    $sql = "INSERT INTO login (cedula, password_hash, email, nombres, telefono, sexo, rol, carrera) VALUES ('$cedula', '$password_hash', '$email', '$nombres', '$telefono', '$sexo', '$rol', '$carrera')";
+    $sql = "INSERT INTO login (cedula, password_hash, email, nombres, telefono, sexo, rol_id, carrera) VALUES ('$cedula', '$password_hash', '$email', '$nombres', '$telefono', '$sexo', '$rol_id', '$carrera')";
     if (mysqli_query($mysqli, $sql)) {
         echo '<script>alert("Usuario agregado correctamente")</script>';
         echo "<script>location.href='admin.php'</script>";
