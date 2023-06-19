@@ -25,7 +25,7 @@ if (!isset($_SESSION['user'])) {
             <div class="caption">
                 <span><h2>Administración de usuarios registrados</h2></span>
                 <div class="well well-small">
-                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar Usuario</a>
+                    <a href="#" class="btn btn-primary float-left" data-toggle="modal" data-target="#myModal">Agregar Usuario</a>
                     <hr class="soft"/>
                     <h4>Tabla de Usuarios</h4>
                     <div class="row-fluid">
@@ -142,7 +142,6 @@ if (!isset($_SESSION['user'])) {
             </div>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
