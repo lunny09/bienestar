@@ -18,8 +18,9 @@ body {
 a {
     text-decoration: none;
 }
-.float-left {
+.btn-primary {
     float: left;
+    margin-right: 1000px; /* Ajusta este valor según el espacio deseado entre el botón y la tabla */
 }
 .img-rounded {
     width: 25px;

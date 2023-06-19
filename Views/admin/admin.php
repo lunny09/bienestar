@@ -38,7 +38,7 @@ $query = mysqli_query($mysqli, $sql);
                 <div class="caption">
                     <span><h2>Administración de usuarios registrados</h2></span>
                     <div class="well well-small">
-                        <a href="#" class="btn btn-primary float-left" data-toggle="modal" data-target="#myModal">Agregar Usuario</a>
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar Usuario</a>
                         <hr class="soft"/>
                         <h4>Tabla de Usuarios</h4>
                         <div class="row-fluid">
@@ -68,7 +68,7 @@ $query = mysqli_query($mysqli, $sql);
                                 echo "<td>$arreglo[9]</td>"; // Sexo
                                 echo "<td>$arreglo[10]</td>"; // Carrera
                                 echo "<td>$arreglo[5]</td>"; // rol
-                                echo "<td><a href='actualizar.php?id=$arreglo[0]'><img src='../../Assets/images/update.png' class='img-rounded'/></a></td>";
+                                echo "<td><a href='actualizar.php?id=$arreglo[0]'><img src='../../Assets/images/edit.png' class='img-rounded'/></a></td>";
                                 echo "<td><a href='?id=$arreglo[0]&idborrar=2' onclick='return confirmar()'><img src='../../Assets/images/delete.png' class='img-rounded'/></a></td>";
                                 echo "</tr>";
                             }
