@@ -2,9 +2,9 @@
 <?php
 session_start();
 if (!isset($_SESSION['user'])) {
-    header("Location:index.php");
+    header("Location: ../login/index.php");
 } elseif ($_SESSION['rol_id'] == 2) {
-    header("Location:index2.php");
+    header("Location: ../login/index2.php");
 }
 ?>
 <html lang="en">
@@ -30,7 +30,7 @@ if (!isset($_SESSION['user'])) {
                     <h4>Tabla de Usuarios</h4>
                     <div class="row-fluid">
                         <?php
-                        require("connect_db.php");
+                        require("../../config/connect_db.php");
                         $sql = "SELECT * FROM login";
                         $query = mysqli_query($mysqli, $sql);
                         echo "<table class='table'>";
@@ -75,7 +75,6 @@ if (!isset($_SESSION['user'])) {
                         }
                         ?>
                     </div>
-                    <br/>
                 </div>
             </div>
         </div>
@@ -90,7 +89,7 @@ if (!isset($_SESSION['user'])) {
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="guardar_usuario.php" method="POST">
+                    <form action="../../controllers/guardar_usuario.php" method="POST">
                     <div class="form-group">
                             <label for="cedula">Cedula:</label>
                             <input type="text" name="cedula" id="cedula" class="form-control" required>

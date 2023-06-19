@@ -5,7 +5,7 @@
 	$pass= $_POST['pass'];
 	$rpass=$_POST['rpass'];
 
-	require("../login/connect_db.php");
+	require("../../config/connect_db.php");
 //la variable  $mysqli viene de connect_db que lo traigo con el require("connect_db.php");
 	$checkemail=mysqli_query($mysqli,"SELECT * FROM login WHERE email='$mail'");
 	$check_mail=mysqli_num_rows($checkemail);

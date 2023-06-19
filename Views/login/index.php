@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 			<img src="../../Assets/images/bg.svg">
 		</div>
 		<div class="login-content">
-		<form action="validar.php" method="post">
+		<form action="../../controllers/validar.php" method="post">
 				<img src="../../Assets/images/logo.png">
 				<h2 class="title">Bienvenido</h2>
            		<div class="input-div one">
