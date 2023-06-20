@@ -34,13 +34,13 @@ $offset = ($pagina_actual - 1) * $registros_por_pagina;
 // Obtener el término de búsqueda si se ha enviado
 $term = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Consulta SQL para obtener los registros filtrados por término de búsqueda
-$sql = "SELECT * FROM login WHERE cedula LIKE '%$term%' LIMIT $offset, $registros_por_pagina";
+// Consulta SQL para obtener los registros filtrados por término de búsqueda y estado activo
+$sql = "SELECT * FROM login WHERE cedula LIKE '%$term%' AND estado = 1 LIMIT $offset, $registros_por_pagina";
 $query = mysqli_query($mysqli, $sql);
 
 if ($query) {
-    // Consulta SQL para contar el total de registros filtrados por término de búsqueda
-    $total_registros = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM login WHERE cedula LIKE '%$term%'"));
+    // Consulta SQL para contar el total de registros filtrados por término de búsqueda y estado activo
+    $total_registros = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM login WHERE cedula LIKE '%$term%' AND estado = 1"));
 
     $paginas_totales = ceil($total_registros / $registros_por_pagina);
 } else {
@@ -75,7 +75,7 @@ if ($query) {
                             <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                 <div class="form-group">
                                     <label for="search">Buscar:</label>
-                                    <input type="num" name="search" class="form-control" id="search" placeholder="Ingrese un nombre">
+                                    <input type="num" name="search" class="form-control" id="search" placeholder="Ingrese un numero de cedula">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Buscar</button>
                             </form>
@@ -90,12 +90,13 @@ if ($query) {
                             echo "<th scope='col'>Sexo</th>";
                             echo "<th scope='col'>Carrera</th>";
                             echo "<th scope='col'>Rol</th>";
+                            echo "<th scope='col'>Estado</th>"; // Nueva columna para el estado
                             echo "<th scope='col'>Editar</th>";
                             echo "<th scope='col'>Borrar</th>";
                             echo "</tr>";
                             echo "</thead>";
                             echo "<tbody>";
-
+                            
                             while ($arreglo = mysqli_fetch_array($query)) {
                                 echo "<tr>";
                                 echo "<th scope='row'>$arreglo[6]</th>"; // Cedula
@@ -104,14 +105,21 @@ if ($query) {
                                 echo "<td>$arreglo[8]</td>"; // Telefono
                                 echo "<td>$arreglo[9]</td>"; // Sexo
                                 echo "<td>$arreglo[10]</td>"; // Carrera
-                                echo "<td>$arreglo[5]</td>"; // rol
+                                echo "<td>$arreglo[5]</td>"; // Rol
+                            
+                                // Columna para el estado del usuario
+                                $estado = $arreglo['estado']; // Ajusta el nombre del campo según tu estructura de base de datos
+                                $estadoTexto = ($estado == 1) ? 'Activo' : 'Inactivo';
+                                echo "<td>$estadoTexto</td>";
+                            
                                 echo "<td><a href='../../controllers/actualizar.php?id=$arreglo[0]'><img src='../../Assets/images/edit.png' class='img-rounded'/></a></td>";
                                 echo "<td><a href='?id=$arreglo[0]&idborrar=2' onclick='return confirmar()'><img src='../../Assets/images/delete.png' class='img-rounded'/></a></td>";
                                 echo "</tr>";
                             }
-
+                            
                             echo "</tbody>";
                             echo "</table>";
+                            
 
                             if ($total_registros > 0) {
                                 echo "<div class='pagination'>";
