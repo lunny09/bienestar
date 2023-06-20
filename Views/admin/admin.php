@@ -35,12 +35,12 @@ $offset = ($pagina_actual - 1) * $registros_por_pagina;
 $term = isset($_GET['search']) ? $_GET['search'] : '';
 
 // Consulta SQL para obtener los registros filtrados por término de búsqueda
-$sql = "SELECT * FROM login WHERE nombres LIKE '%$term%' LIMIT $offset, $registros_por_pagina";
+$sql = "SELECT * FROM login WHERE cedula LIKE '%$term%' LIMIT $offset, $registros_por_pagina";
 $query = mysqli_query($mysqli, $sql);
 
 if ($query) {
     // Consulta SQL para contar el total de registros filtrados por término de búsqueda
-    $total_registros = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM login WHERE nombres LIKE '%$term%'"));
+    $total_registros = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM login WHERE cedula LIKE '%$term%'"));
 
     $paginas_totales = ceil($total_registros / $registros_por_pagina);
 } else {
@@ -75,7 +75,7 @@ if ($query) {
                             <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                 <div class="form-group">
                                     <label for="search">Buscar:</label>
-                                    <input type="text" name="search" class="form-control" id="search" placeholder="Ingrese un nombre">
+                                    <input type="num" name="search" class="form-control" id="search" placeholder="Ingrese un nombre">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Buscar</button>
                             </form>
