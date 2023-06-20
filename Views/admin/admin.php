@@ -10,13 +10,43 @@ if (!isset($_SESSION['user'])) {
 
 require("../../config/connect_db.php");
 
+// Verificar si se ha enviado el parámetro 'idborrar' para eliminar un registro
+if (isset($_GET['idborrar']) && $_GET['idborrar'] == 2) {
+    $id = $_GET['id']; // Obtener el ID del registro a eliminar
+
+    // Realizar la eliminación del registro utilizando el ID
+    $eliminar = mysqli_query($mysqli, "DELETE FROM login WHERE id = $id");
+
+    // Verificar si la eliminación fue exitosa y redirigir a la página actual
+    if ($eliminar) {
+        header("Location: $_SERVER[PHP_SELF]");
+        exit();
+    } else {
+        // Mostrar un mensaje de error si la eliminación falló
+        echo "Error al eliminar el registro.";
+    }
+}
+
 $registros_por_pagina = 5;
-$total_registros = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM login"));
-$paginas_totales = ceil($total_registros / $registros_por_pagina);
 $pagina_actual = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($pagina_actual - 1) * $registros_por_pagina;
-$sql = "SELECT * FROM login LIMIT $offset, $registros_por_pagina";
+
+// Obtener el término de búsqueda si se ha enviado
+$term = isset($_GET['search']) ? $_GET['search'] : '';
+
+// Consulta SQL para obtener los registros filtrados por término de búsqueda
+$sql = "SELECT * FROM login WHERE nombres LIKE '%$term%' LIMIT $offset, $registros_por_pagina";
 $query = mysqli_query($mysqli, $sql);
+
+if ($query) {
+    // Consulta SQL para contar el total de registros filtrados por término de búsqueda
+    $total_registros = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM login WHERE nombres LIKE '%$term%'"));
+
+    $paginas_totales = ceil($total_registros / $registros_por_pagina);
+} else {
+    echo "Error en la consulta SQL: " . mysqli_error($mysqli);
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +72,13 @@ $query = mysqli_query($mysqli, $sql);
                         <hr class="soft"/>
                         <h4>Tabla de Usuarios</h4>
                         <div class="row-fluid">
+                            <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                <div class="form-group">
+                                    <label for="search">Buscar:</label>
+                                    <input type="text" name="search" class="form-control" id="search" placeholder="Ingrese un nombre">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </form>
                             <?php
                             echo "<table class='table'>";
                             echo "<thead>";
@@ -68,7 +105,7 @@ $query = mysqli_query($mysqli, $sql);
                                 echo "<td>$arreglo[9]</td>"; // Sexo
                                 echo "<td>$arreglo[10]</td>"; // Carrera
                                 echo "<td>$arreglo[5]</td>"; // rol
-                                echo "<td><a href='actualizar.php?id=$arreglo[0]'><img src='../../Assets/images/edit.png' class='img-rounded'/></a></td>";
+                                echo "<td><a href='../../controllers/actualizar.php?id=$arreglo[0]'><img src='../../Assets/images/edit.png' class='img-rounded'/></a></td>";
                                 echo "<td><a href='?id=$arreglo[0]&idborrar=2' onclick='return confirmar()'><img src='../../Assets/images/delete.png' class='img-rounded'/></a></td>";
                                 echo "</tr>";
                             }
@@ -80,6 +117,8 @@ $query = mysqli_query($mysqli, $sql);
                                 echo "<div class='pagination'>";
                                 generatePagination($paginas_totales, $pagina_actual);
                                 echo "</div>";
+                            } else {
+                                echo "<p>No se encontraron registros.</p>";
                             }
                             ?>
 
@@ -94,7 +133,6 @@ $query = mysqli_query($mysqli, $sql);
             </div>
         </div>
     </div>
-
    <!-- Modal -->
    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -133,7 +171,7 @@ $query = mysqli_query($mysqli, $sql);
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="rol_id">rol_id:</label>
+                            <label for="rol_id">rol:</label>
                             <select name="rol_id" id="rol_id" class="form-control" required>
                                 <option value="2">Paciente</option>
                                 <option value="3">Psicologo</option>
