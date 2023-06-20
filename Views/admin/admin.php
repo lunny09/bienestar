@@ -66,21 +66,27 @@ if ($query) {
         <div class="row">
             <div class="span12">
                 <div class="caption">
-                    <span><h2>Administración de usuarios registrados</h2></span>
+                    <h2>Administración de usuarios registrados</h2>
+                </div>
+                <div class="button-container">
+                    <a href="#" class="btn btn-primary" id="boton" data-toggle="modal" data-target="#myModal">Agregar Usuario</a>
+                    <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="num" name="search" class="form-control" id="search" placeholder="Numero de cedula">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                     <div class="well well-small">
-                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar Usuario</a>
                         <hr class="soft"/>
                         <h4>Tabla de Usuarios</h4>
                         <div class="row-fluid">
-                            <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                <div class="form-group">
-                                    <label for="search">Buscar:</label>
-                                    <input type="num" name="search" class="form-control" id="search" placeholder="Ingrese un numero de cedula">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Buscar</button>
-                            </form>
                             <?php
-                            echo "<table class='table'>";
+                            echo "<table class='table table-bordered border-dark'>";
                             echo "<thead>";
                             echo "<tr>";
                             echo "<th scope='col'>Cedula</th>";
