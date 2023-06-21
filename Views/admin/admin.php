@@ -84,7 +84,8 @@ require_once('../../controllers/pagination.php');
                             // Devolver el nuevo estado como respuesta
                             echo "<td>$nuevoEstado</td>";
                         
-                            echo '<td><a href="#" data-toggle="modal" data-target="#actualizarModal"><img src="../../Assets/images/edit.png" class="img-rounded"/></a></td>';
+                            echo '<td><a href="#" data-toggle="modal" data-target="#actualizarModal"><img src="../../Assets/images/edit.png" class="img-rounded"/></a></td>'; 
+
                             echo "<td><a href='?id=$arreglo[0]&idborrar=2' onclick='return confirmar()'><img src='../../Assets/images/delete.png' class='img-rounded'/></a></td>";
                             echo "</tr>";
                         }
