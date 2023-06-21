@@ -1,28 +1,44 @@
 <?php
 require("../config/connect_db.php");
+
 // Verificar si se han recibido los datos del formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtener los datos del formulario
-    $password = $_POST['password_hash'];
-    $email = $_POST['email'];
-    $rol = $_POST['rol_id'];
-    $cedula = $_POST['cedula'];
-    $nombres = $_POST['nombres'];
-    $telefono = $_POST['telefono'];
-    $sexo = $_POST['sexo'];
-    $carrera = $_POST['carrera'];
-    $estado = $_POST['estado'];
+    // ...
+} else {
+    // Obtener los datos existentes del usuario para mostrar en el formulario
+    if (isset($_GET['cedula'])) {
+        $cedula = $_GET['cedula'];
 
-    // Aquí puedes realizar las operaciones de actualización del usuario en la base de datos
+        // Construir la consulta SQL para obtener los datos del usuario
+        $sql = "SELECT * FROM login WHERE cedula='$cedula'";
 
-    // Construir la consulta SQL de actualización
-    $sql = "UPDATE login SET password_hash='$password', email='$email', rol_id='$rol', cedula='$cedula', nombres='$nombres', telefono='$telefono', Sexo='$sexo', carrera='$carrera', estado='$estado' WHERE cedula='$cedula'";
+        // Ejecutar la consulta
+        $result = mysqli_query($mysqli, $sql);
 
-    // Ejecutar la consulta y manejar los resultados
-    if (mysqli_query($mysqli, $sql)) {
-        echo "Usuario actualizado correctamente";
+        // Verificar si se encontraron resultados
+        if ($result && mysqli_num_rows($result) > 0) {
+            // Obtener los datos del usuario
+            $row = mysqli_fetch_assoc($result);
+
+            // Asignar los valores a las variables
+            $password = $row['password_hash'];
+            $email = $row['email'];
+            $rol = $row['rol_id'];
+            $nombres = $row['nombres'];
+            $telefono = $row['telefono'];
+            $sexo = $row['Sexo'];
+            $carrera = $row['carrera'];
+            $estado = $row['estado'];
+        } else {
+            // No se encontraron datos del usuario
+            echo "No se encontraron datos del usuario";
+        }
     } else {
-        echo "Error al actualizar el usuario: " . mysqli_error($mysqli);
+        // No se recibió el valor de cedula en la URL
+        echo "No se recibió el valor de cedula";
     }
 }
 ?>
+
+<!-- Resto del código HTML -->

@@ -1,15 +1,16 @@
 <?php
 session_start();
-require_once('../../controllers/pagination.php');
 
 if (!isset($_SESSION['user'])) {
     header("Location: ../login/index.php");
 } elseif ($_SESSION['rol_id'] == 2) {
-    header("Location: ../login/index2.php");
+    header("Location: ../psicologo/index2.php");
 }
-
+?>
+<?php
 require_once("../../config/connect_db.php");
 require("../../controllers/buscar_borrar.php");
+require_once('../../controllers/pagination.php');
 ?>
 
 <!DOCTYPE html>
@@ -71,37 +72,23 @@ require("../../controllers/buscar_borrar.php");
                         while ($arreglo = mysqli_fetch_array($query)) {
                             echo "<tr>";
                             echo "<th scope='row'>$arreglo[6]</th>";
-                            echo "<td>$arreglo[3]</td>"; 
+                            echo "<td>$arreglo[3]</td>";
                             echo "<td>$arreglo[7]</td>";
-                            echo "<td>$arreglo[8]</td>"; 
-                            echo "<td>$arreglo[9]</td>"; 
-                            echo "<td>$arreglo[10]</td>"; 
-                            echo "<td>$arreglo[5]</td>"; 
-                            
-                            
-                            echo '<td>';
-echo '<form method="POST" action="../../controllers/cambiar_estado.php">';
-echo '<input type="hidden" name="id" value="' . $arreglo['id'] . '">';
-echo '<input type="hidden" name="estado" value="' . $arreglo['estado'] . '">';
-echo '<button type="submit" name="cambiar_estado" value="' . $arreglo['estado'] . '">';
+                            echo "<td>$arreglo[8]</td>";
+                            echo "<td>$arreglo[9]</td>";
+                            echo "<td>$arreglo[10]</td>";
+                            echo "<td>$arreglo[5]</td>";
+                        
+                            $nuevoEstado = ($arreglo[11] == 2) ? "Inactivo" : "Activo";
 
-// Mostrar el texto del botón según el estado
-if ($arreglo['estado'] == "Activo") {
-    echo 'Inactivo';
-} else {
-    echo 'Activo';
-}
-
-echo '</button>';
-echo '</form>';
-echo '</td>';
-
-                          
-                          
+                            // Devolver el nuevo estado como respuesta
+                            echo "<td>$nuevoEstado</td>";
+                        
                             echo '<td><a href="#" data-toggle="modal" data-target="#actualizarModal"><img src="../../Assets/images/edit.png" class="img-rounded"/></a></td>';
                             echo "<td><a href='?id=$arreglo[0]&idborrar=2' onclick='return confirmar()'><img src='../../Assets/images/delete.png' class='img-rounded'/></a></td>";
                             echo "</tr>";
                         }
+                        
                         
                         echo "</tbody>";
                         echo "</table>";
@@ -125,8 +112,9 @@ echo '</td>';
             </div>
         </div>
     </div>
-    
+    <script src="../../Assets/js/estado.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>

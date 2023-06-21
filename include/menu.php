@@ -15,7 +15,7 @@
         </div>
         <ul class="nav pull-right">
             <li>Bienvenido <strong><?php echo $_SESSION['user'];?></strong></li>
-            <li><a href="desconectar.php">Cerrar Sesión</a></li>
+            <li><a href="../controllers/desconectar.php">Cerrar Sesión</a></li>
         </ul>
     </header>
     <div class="menu__side" id="menu_side">

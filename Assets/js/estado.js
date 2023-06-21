@@ -1,22 +1,14 @@
-function cambiarEstado(usuarioId, estadoActual) {
-    var nuevoEstado = (estadoActual == 1) ? 0 : 1;
+$(document).ready(function() {
+    $('#estado').change(function() {
+        var selectedValue = $(this).val(); // Obtener el valor seleccionado
 
-    $.ajax({
-        url: '../../controllers/cambiar_estado.php',
-        method: 'POST',
-        data: {
-            id: usuarioId,
-            estado: nuevoEstado
-        },
-        success: function(response) {
-            if (response == 'success') {
-                location.reload();
-            } else {
-                alert('Error al cambiar el estado del usuario.');
-            }
-        },
-        error: function() {
-            alert('Error de conexión con el servidor.');
+        // Realizar acciones en función del valor seleccionado
+        if (selectedValue === "1") {
+            // Acción para el estado "Activo"
+            console.log("Estado activo seleccionado");
+        } else if (selectedValue === "2") {
+            // Acción para el estado "Inactivo"
+            console.log("Estado inactivo seleccionado");
         }
     });
-}
+});

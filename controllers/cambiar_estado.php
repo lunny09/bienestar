@@ -1,24 +1,15 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtener el estado actual enviado por el formulario
+    // Obtener los valores enviados por la solicitud AJAX
+    $id = $_POST['id'];
     $estado = $_POST['estado'];
 
     // Realizar la inversión del estado
-    if ($estado == "Activo") {
-        $nuevoEstado = "Inactivo";
-    } else {
-        $nuevoEstado = "Activo";
-    }
+    $nuevoEstado = ($estado === 'Activo') ? 'Inactivo' : 'Activo';
 
-    // Simulación de la actualización del estado en la base de datos u otros procesos necesarios
-    // Reemplaza esta sección con tu lógica real de actualización del estado
+    // Realizar acciones adicionales según el estado actual y el ID
+    // ...
 
-    // Mostrar mensajes de depuración
-    var_dump($_POST['estado']);
-    var_dump($nuevoEstado);
-
-    // Redirigir al usuario o mostrar un mensaje de éxito
-    header("Location: ../views/admin/admin.php?mensaje=Estado_actualizado&estado=$nuevoEstado");
-    exit();
+    // Devolver la respuesta (puedes incluir un mensaje u otros datos según sea necesario)
+    echo 'Estado actualizado correctamente';
 }
-?>
