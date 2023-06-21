@@ -1,27 +1,24 @@
 <?php
-require("../config/connect_db.php");
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtener el estado actual enviado por el formulario
+    $estado = $_POST['estado'];
 
-// Cambiar el estado del usuario en la base de datos
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Obtener el ID del usuario y el nuevo estado enviado por la solicitud POST
-    $usuarioId = $_POST['id'];
-    $nuevoEstado = $_POST['estado'];
-
-    // Consulta SQL para actualizar el estado del usuario en la tabla "login"
-    $consulta = "UPDATE login SET estado = '$nuevoEstado' WHERE id = $usuarioId";
-
-    // Ejecutar la consulta
-    $resultado = mysqli_query($mysqli, $consulta);
-
-    // Verificar si la actualización fue exitosa
-    if ($resultado) {
-        echo 'success';
+    // Realizar la inversión del estado
+    if ($estado == "Activo") {
+        $nuevoEstado = "Inactivo";
     } else {
-        echo 'error';
+        $nuevoEstado = "Activo";
     }
-} else {
-    // Si se intenta acceder directamente al archivo sin una solicitud POST, redirige o muestra un mensaje de error
-    echo 'Acceso no autorizado';
+
+    // Simulación de la actualización del estado en la base de datos u otros procesos necesarios
+    // Reemplaza esta sección con tu lógica real de actualización del estado
+
+    // Mostrar mensajes de depuración
+    var_dump($_POST['estado']);
+    var_dump($nuevoEstado);
+
+    // Redirigir al usuario o mostrar un mensaje de éxito
+    header("Location: ../views/admin/admin.php?mensaje=Estado_actualizado&estado=$nuevoEstado");
+    exit();
 }
 ?>

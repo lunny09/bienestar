@@ -8,7 +8,7 @@ if (!isset($_SESSION['user'])) {
     header("Location: ../login/index2.php");
 }
 
-require("../../config/connect_db.php");
+require_once("../../config/connect_db.php");
 require("../../controllers/buscar_borrar.php");
 ?>
 
@@ -78,14 +78,27 @@ require("../../controllers/buscar_borrar.php");
                             echo "<td>$arreglo[10]</td>"; 
                             echo "<td>$arreglo[5]</td>"; 
                             
-                            // Columna para el estado del usuario
-                            $estado = $arreglo['estado']; // Ajusta el nombre del campo según tu estructura de base de datos
-                            $estadoTexto = ($estado == 1) ? 'Activo' : 'Inactivo';
-                            echo "<td>$estadoTexto</td>";
                             
+                            echo '<td>';
+echo '<form method="POST" action="../../controllers/cambiar_estado.php">';
+echo '<input type="hidden" name="id" value="' . $arreglo['id'] . '">';
+echo '<input type="hidden" name="estado" value="' . $arreglo['estado'] . '">';
+echo '<button type="submit" name="cambiar_estado" value="' . $arreglo['estado'] . '">';
+
+// Mostrar el texto del botón según el estado
+if ($arreglo['estado'] == "Activo") {
+    echo 'Inactivo';
+} else {
+    echo 'Activo';
+}
+
+echo '</button>';
+echo '</form>';
+echo '</td>';
+
+                          
+                          
                             echo '<td><a href="#" data-toggle="modal" data-target="#actualizarModal"><img src="../../Assets/images/edit.png" class="img-rounded"/></a></td>';
-
-
                             echo "<td><a href='?id=$arreglo[0]&idborrar=2' onclick='return confirmar()'><img src='../../Assets/images/delete.png' class='img-rounded'/></a></td>";
                             echo "</tr>";
                         }
