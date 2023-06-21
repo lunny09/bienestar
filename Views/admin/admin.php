@@ -24,6 +24,7 @@ require("../../controllers/buscar_borrar.php");
 <body>
     <?php include("../../include/menu.php"); ?>
     <?php include '../modales/modal_agregar.php'; ?>
+    <?php include '../modales/modal_actualizar.php'; ?>
     
     <div class="table-container">
         <div class="row">
@@ -82,7 +83,9 @@ require("../../controllers/buscar_borrar.php");
                             $estadoTexto = ($estado == 1) ? 'Activo' : 'Inactivo';
                             echo "<td>$estadoTexto</td>";
                             
-                            echo "<td><a href='../../controllers/actualizar.php?id=$arreglo[0]'><img src='../../Assets/images/edit.png' class='img-rounded'/></a></td>";
+                            echo '<td><a href="#" data-toggle="modal" data-target="#actualizarModal"><img src="../../Assets/images/edit.png" class="img-rounded"/></a></td>';
+
+
                             echo "<td><a href='?id=$arreglo[0]&idborrar=2' onclick='return confirmar()'><img src='../../Assets/images/delete.png' class='img-rounded'/></a></td>";
                             echo "</tr>";
                         }
