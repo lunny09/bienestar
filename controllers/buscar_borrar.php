@@ -1,4 +1,20 @@
 <?php
+if (isset($_GET['idborrar']) && $_GET['idborrar'] == 2) {
+    $id = $_GET['id']; // Obtener el ID del registro a eliminar
+
+    // Realizar la eliminación del registro utilizando el ID
+    $eliminar = mysqli_query($mysqli, "DELETE FROM login WHERE id = $id");
+
+    // Verificar si la eliminación fue exitosa y redirigir a la página actual
+    if ($eliminar) {
+        header("Location: $_SERVER[PHP_SELF]");
+        exit();
+    } else {
+        // Mostrar un mensaje de error si la eliminación falló
+        echo "Error al eliminar el registro.";
+    }
+}
+
 $registros_por_pagina = 5;
 $pagina_actual = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($pagina_actual - 1) * $registros_por_pagina;
@@ -15,17 +31,6 @@ if ($query) {
     $total_registros = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM login WHERE cedula LIKE '%$term%' AND estado = 1"));
 
     $paginas_totales = ceil($total_registros / $registros_por_pagina);
-
-    // Verificar si se obtuvieron resultados
-    if (mysqli_num_rows($query) > 0) {
-        // Recorrer los resultados con mysqli_fetch_array()
-        while ($row = mysqli_fetch_array($query)) {
-            // Realizar las operaciones necesarias con cada registro
-            // ...
-        }
-    } else {
-        echo "No se encontraron resultados.";
-    }
 } else {
     echo "Error en la consulta SQL: " . mysqli_error($mysqli);
     exit();

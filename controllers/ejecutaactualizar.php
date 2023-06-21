@@ -1,7 +1,7 @@
 <?php
 extract($_POST);
 require("../config/connect_db.php");
-$sentencia = "update login set user='$user', password_hash='$pass', email='$email', pasadmin='$pasadmin' where id='$id'";
+$sentencia = "update login set password_hash='$pass', email='$email', cedula='$cedula', nombres='$nombres', telefono='$telefono', Sexo='$sexo', carrera='$carrera', rol_id='$rol_id', estado='$estado' WHERE id='$id'";
 $resent = mysqli_query($mysqli, $sentencia);
 if ($resent == null) {
 	echo "Error de procesamiento, no se han actualizado los datos";

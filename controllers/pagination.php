@@ -18,7 +18,12 @@ function generatePagination($total_paginas, $pagina_actual)
     }
     
     // Enlaces de páginas
-    for ($i = 1; $i <= $total_paginas; $i++) {
+    $max_paginas = 3; // Número máximo de páginas principales a mostrar
+    
+    $inicio = max(1, $pagina_actual - floor($max_paginas / 2));
+    $fin = min($inicio + $max_paginas - 1, $total_paginas);
+    
+    for ($i = $inicio; $i <= $fin; $i++) {
         if ($i == $pagina_actual) {
             echo '<li class="page-item active"><a class="page-link" href="#">' . $i . '</a></li>';
         } else {
@@ -42,4 +47,5 @@ function generatePagination($total_paginas, $pagina_actual)
     echo '</ul>';
     echo '</nav>';
 }
+
 ?>
