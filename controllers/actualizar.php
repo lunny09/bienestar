@@ -1,7 +1,23 @@
-<?php
-require_once("../../config/connect_db.php");
-?>
 
+<?php
+		extract($_GET);
+		require("../config/connect_db.php");
+
+		$sql="SELECT * FROM login WHERE id=$id";
+		$ressql=mysqli_query($mysqli,$sql);
+		while ($row=mysqli_fetch_row ($ressql)){
+		    	$id=$row[0];
+		    	$cedula=$row[6];
+		    	$email=$row[3];
+		    	$nombres=$row[7];
+		    	$telefono=$row[8];
+		    	$sexo=$row[9];
+		    	$rol_id=$row[5];
+		    	$carrera=$row[10];
+		    	$estado=$row[11];
+
+		    }
+		?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,14 +34,14 @@ require_once("../../config/connect_db.php");
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
-                <form action="../../controllers/ejecutaactualizar.php" method="POST">
-                    <div class="form-group">
-                        <label for="cedula">Cedula:</label>
-                        <input type="text" name="cedula" id="cedula" class="form-control" value="<?php echo $cedula; ?>">
+            <form action="ejecutar_actualizar.php" method="post">
+        <div class="form-group">
+                        <label for="id">Id:</label>
+                        <input type="text" name="id" id="id" class="form-control" value="<?php echo $id?>" readonly="readonly">
                     </div>
-                    <div class="form-group">
-                        <label for="password">Contraseña:</label>
-                        <input type="password" name="password_hash" id="password_hash" class="form-control" value="<?php echo $password; ?>">
+		            <div class="form-group">
+                        <label for="cedula">Cedula:</label>
+                        <input type="text" name="cedula" id="cedula" class="form-control" value="<?php echo $cedula?>" readonly="readonly">
                     </div>
                     <div class="form-group">
                         <label for="correo">Correo:</label>
@@ -49,9 +65,9 @@ require_once("../../config/connect_db.php");
                     <div class="form-group">
                         <label for="rol_id">Rol:</label>
                         <select name="rol_id" id="rol_id" class="form-control">
-                            <option value="2" <?php if ($rol == '2') echo 'selected'; ?>>Paciente</option>
-                            <option value="3" <?php if ($rol == '3') echo 'selected'; ?>>Psicologo</option>
-                            <option value="1" <?php if ($rol == '1') echo 'selected'; ?>>Administrador</option>
+                            <option value="2" <?php if ($rol_id == '2') echo 'selected'; ?>>Paciente</option>
+                            <option value="3" <?php if ($rol_id == '3') echo 'selected'; ?>>Psicologo</option>
+                            <option value="1" <?php if ($rol_id == '1') echo 'selected'; ?>>Administrador</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -78,6 +94,6 @@ require_once("../../config/connect_db.php");
         </div>
     </div>
 </div>
-<script src="../../Assets/js/estado.js"></script>
+
 </body>
 </html>

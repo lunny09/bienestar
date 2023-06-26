@@ -7,3 +7,6 @@ if ($_SESSION['user']) {
 	header("location:../views/login/index.php");
 }
 ?> 
+<?php
+$conn->close();
+?>
