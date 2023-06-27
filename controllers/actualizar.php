@@ -1,7 +1,7 @@
 
 <?php
 		extract($_GET);
-		require("../config/connect_db.php");
+	
 
 		$sql="SELECT * FROM login WHERE id=$id";
 		$ressql=mysqli_query($mysqli,$sql);
@@ -24,6 +24,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BIENESTAR ESTUDIANTIL</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 <div class="modal fade" id="actualizarModal" tabindex="-1" role="dialog" aria-labelledby="actualizarModal" aria-hidden="true">
@@ -94,6 +95,6 @@
         </div>
     </div>
 </div>
-
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

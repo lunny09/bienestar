@@ -25,6 +25,7 @@ require_once('../../controllers/pagination.php');
 <body>
     <?php include("../../include/menu.php"); ?>
     <?php include '../modales/modal_agregar.php'; ?>
+    <?php include '../../controllers/actualizar.php'; ?>
     
     <div class="table-container">
         <div class="row">
@@ -83,7 +84,7 @@ require_once('../../controllers/pagination.php');
                             // Devolver el nuevo estado como respuesta
                             echo "<td>$nuevoEstado</td>";
                         
-                            echo "<td><a href='../../controllers/actualizar.php?id=$arreglo[0]'><img src='images/actualizar.gif' class='img-rounded'></td>";
+                            echo "<td><a href='?id=$arreglo[0]' class='btn-open-modal' data-toggle='modal' data-target='#actualizarModal'><img src='../../Assets/images/edit.png' class='img-rounded'></td>";
 
                             echo "<td><a href='?id=$arreglo[0]&idborrar=2' onclick='return confirmar()'><img src='../../Assets/images/delete.png' class='img-rounded'/></a></td>";
                             echo "</tr>";
@@ -117,5 +118,7 @@ require_once('../../controllers/pagination.php');
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+
 </body>
 </html>
